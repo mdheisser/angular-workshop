@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpInterceptor,
+  HttpHandler,
+  HttpRequest,
+  HttpHeaders
+} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from '@env/environment';
@@ -10,9 +16,7 @@ import { environment } from '@env/environment';
 @Injectable()
 export class ApiPrefixInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!/^(http|https):/i.test(request.url)) {
-      request = request.clone({ url: environment.baseUrl + request.url });
-    }
+    request = request.clone({ url: environment.baseUrl + request.url, headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
     return next.handle(request);
   }
 }
