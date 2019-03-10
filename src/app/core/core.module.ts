@@ -1,6 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { ApiPrefixInterceptor } from './http/api-prefix.interceptor';
 
 /* our own custom services  */
 // e.g:
@@ -14,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   declarations: [],
   providers: [
+    ApiPrefixInterceptor
     // ContactService
   ]
 })

@@ -1,0 +1,12 @@
+<form [formGroup]="userForm" class="formwidth" (ngSubmit)="onSubmit(userForm.value)" autocomplete="off">
+  <div class="form-group">
+    <input class="form-control" placeholder="First Name" id="firstname" formControlName="firstName" name="firstname">
+  </div>
+  <div class="form-group">
+    <input class="form-control" placeholder="Last Name" id="lastname" formControlName="lastName" name="lastname">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<ul *ngFor="let user of users | async">
+  <li>{{ user.firstName }}</li>
+</ul>
